@@ -1,6 +1,11 @@
 # Keyword Generation Project Report
 
-This is a project that can extract keyword from a wikipedia article using different extractor and optionally match them against a given list of words to see which are most similar.
+This is a project that can extract keywords from a Wikipedia article using different extractors and optionally match them against a given list of words to see which are most similar.
+Developed a system employing NLP techniques, including topical modelling and KeyBERT, to dynamically generate SEO-optimized keywords from web content using nltk.
+Integrated a word2vec model to assess semantic alignment between generated & defined keywords for better relevance.
+Compared multiple models, optimizing website keyword generation using diverse techniques.
+We first use selenium to scrape a website. Then, the data is passed through the KeyBERT/Topical modelling module, which generates keywords. These keywords are ranked using a semantic similarity module, where we use cosine similarity as the similarity metric.
+
 
 
 ## Getting Started
