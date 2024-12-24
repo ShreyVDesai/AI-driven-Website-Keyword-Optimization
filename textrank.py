@@ -1,5 +1,4 @@
 import spacy
-import pytextrank
 
 def preprocess_for_textrank(text):
     nlp = spacy.load("en_core_web_sm")
