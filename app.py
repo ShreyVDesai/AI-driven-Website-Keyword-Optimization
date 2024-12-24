@@ -6,6 +6,17 @@ from Scraper.Scraper import Scraper
 import rake
 import textrank
 import tfidf
+import subprocess
+import os
+
+# Download SpaCy model if not already installed
+model_name = "en_core_web_sm"  # Replace with the desired model name if needed
+try:
+    import spacy
+    spacy.load(model_name)
+except (ImportError, OSError):
+    subprocess.run(["python", "-m", "spacy", "download", model_name])
+
 
 
 # Streamlit application
