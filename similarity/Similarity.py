@@ -1,14 +1,27 @@
 import numpy as np
 from scipy.spatial.distance import cosine
 from gensim.models import KeyedVectors
+import gensim.downloader
 
+def download_and_save_fasttext_wikipedia_model(model_name, save_path):
+    # Download the FastText model trained on Wikipedia
+    print("downloading...")
+    model = gensim.downloader.load(model_name)
+
+    # Save the FastText model in a Gensim-compatible format
+    print("saving...")
+    model.save(save_path)
 
 class Similarity:
     def __init__(self,n):
         self.n = n
   
     def calculate_phrase_similarity(self,phrase1, phrase2):
-        word_vectors = KeyedVectors.load("similarity/fasttext_wiki_model")
+        try:
+            word_vectors = KeyedVectors.load("similarity/fasttext_wiki_model")
+        except:
+            download_and_save_fasttext_wikipedia_model('fasttext-wiki-news-subwords-300', "similarity/fasttext_wiki_model")
+            word_vectors = KeyedVectors.load("similarity/fasttext_wiki_model")
         # Tokenize and get vectors for each word in the phrases
         tokens1 = phrase1.split()
         tokens2 = phrase2.split()
@@ -35,11 +48,16 @@ class Similarity:
         similarities = dict()
         for i in list_of_classes:
             similarities[i] = self.calculate_phrase_similarity(i, generated_keyword)
+            if not similarities[i]:
+                similarities[i] = 0
+        
         for i in range(n):
             k = max(similarities, key=lambda k: similarities[k])
             max_sim.append(k)
             similarities[k] = 0
         return max_sim
+
+
 
 
 
