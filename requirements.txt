@@ -10,3 +10,4 @@ pip-chill==1.0.3
 wikipedia==1.4.0
 scipy==1.10.1
 rake_nltk
+spacy
