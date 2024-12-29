@@ -72,7 +72,7 @@ def main():
     if st.button("Scrape and Generate Keywords"):
         st.write("Scraping the Wikipedia page...")
         scraper = Scraper()
-        document = scraper.scrape(topic,get_driver())
+        document = scraper.scrape(topic,driver=get_driver())
         st.success("Scraping completed.")
 
         

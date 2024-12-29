@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 class Scraper:
 
-    def scrape(self, keyword):
+    def scrape(self, keyword, driver=None):
         """
         Input : Keyword: Scraper will scrape keyword's Wikipedia page 
         Enter to close the browser.
@@ -24,11 +24,12 @@ class Scraper:
         options.add_argument("--no-sandbox")  # Avoid sandbox issues
         options.add_argument("--disable-dev-shm-usage")  # Solve potential file descriptor issues
 
-        service = Service(ChromeDriverManager().install())
+        if not driver:
+            service = Service(ChromeDriverManager().install())
 
-        # Initialize the WebDriver with the proper options and service
-        driver = webdriver.Chrome(service=service, options=options)
-
+            # Initialize the WebDriver with the proper options and service
+            driver = webdriver.Chrome(service=service, options=options)
+        
 
         try:
             url = 'https://en.wikipedia.org/wiki/' + keyword
