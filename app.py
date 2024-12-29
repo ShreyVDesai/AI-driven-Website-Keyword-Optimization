@@ -3,7 +3,7 @@ from similarity.Similarity import Similarity
 from KeyBert.keybert_extractor import KeyBertExtractor
 from Scraper.Scraper import Scraper
 import rake
-import textrank
+# import textrank
 import tfidf
 import subprocess
 import os
@@ -37,7 +37,7 @@ def main():
     )
 
     # Extractor type selection
-    extractor_type = st.radio("Select the extractor type:", ("KeyBERT", "RAKE", 'TFIDF', 'Text Rank'))
+    extractor_type = st.radio("Select the extractor type:", ("KeyBERT", "RAKE", 'TFIDF'))
 
     # Input: List of topics (if mode is "Match it with a list of keywords")
     list_of_topics = []
@@ -66,8 +66,9 @@ def main():
             keywords = rake.extract_keywords_rake(document)
         elif extractor_type == 'TFIDF':
             keywords = tfidf.extract_keywords_tfidf(document)
-        else:
-            keywords = textrank.extract_keywords_textrank(document)
+        # else:
+            # keywords = textrank.extract_keywords_textrank(document)
+            
         st.success("Keyword extraction completed.")
 
         # Mode-based processing
