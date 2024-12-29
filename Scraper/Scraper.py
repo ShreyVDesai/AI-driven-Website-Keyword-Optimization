@@ -1,7 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 import re
 import time
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+
 
 class Scraper:
 
@@ -11,14 +15,20 @@ class Scraper:
         Enter to close the browser.
         Returns a string of the extracted info.
         """
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        options.add_argument('window-size=1200x7000')
-        options.add_argument('--headless')
 
         string = ''
 
-        driver = webdriver.Chrome(options=options)
+        # Initialize Chrome options
+        options = Options()
+        options.add_argument("--headless")  # Run headless mode if you don't need a UI
+        options.add_argument("--no-sandbox")  # Avoid sandbox issues
+        options.add_argument("--disable-dev-shm-usage")  # Solve potential file descriptor issues
+
+        service = Service(ChromeDriverManager().install())
+
+        # Initialize the WebDriver with the proper options and service
+        driver = webdriver.Chrome(service=service, options=options)
+
 
         try:
             url = 'https://en.wikipedia.org/wiki/' + keyword
