@@ -7,17 +7,18 @@ import rake
 import tfidf
 import subprocess
 import os
+import spacy
 
 # Download SpaCy model if not already installed
-model_name = "en_core_web_sm"  # Replace with the desired model name if needed
-try:
-    import spacy
-    spacy.load(model_name)
-except (ImportError, OSError):
-    subprocess.run(["python", "-m", "spacy", "download", model_name])
-    # os.system('python -m spacy download en_core_web_sm')
-    import spacy
-    spacy.load(model_name)
+# model_name = "en_core_web_sm"  # Replace with the desired model name if needed
+# try:
+#     import spacy
+#     spacy.load(model_name)
+# except (ImportError, OSError):
+#     subprocess.run(["python", "-m", "spacy", "download", model_name])
+#     # os.system('python -m spacy download en_core_web_sm')
+#     import spacy
+#     spacy.load(model_name)
 
 
 
