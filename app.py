@@ -75,7 +75,7 @@ def main():
         document = scraper.scrape(topic,driver=get_driver())
         st.success("Scraping completed.")
 
-        st.write(document)
+        # st.write(document)
         
         # Keyword extraction
         st.write("Extracting keywords...")
