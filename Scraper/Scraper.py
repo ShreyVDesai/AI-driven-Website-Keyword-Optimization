@@ -29,7 +29,7 @@ class Scraper:
 
             # Initialize the WebDriver with the proper options and service
             driver = webdriver.Chrome(service=service, options=options)
-        
+
 
         try:
             url = 'https://en.wikipedia.org/wiki/' + keyword
