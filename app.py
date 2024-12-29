@@ -20,10 +20,29 @@ import spacy
 #     import spacy
 #     spacy.load(model_name)
 
-
+ 
 
 # Streamlit application
 def main():
+    
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from webdriver_manager.chrome import ChromeDriverManager
+    from webdriver_manager.core.os_manager import ChromeType
+
+    @st.cache_resource
+    def get_driver():
+        return webdriver.Chrome(
+            service=Service(
+                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
+
+    options = Options()
+    options.add_argument("--disable-gpu")
+    options.add_argument("--headless")
     st.title("Keyword Generator")
     st.write("Welcome to the keyword generator. Use this tool to extract keywords and find similarities.")
 
@@ -53,7 +72,7 @@ def main():
     if st.button("Scrape and Generate Keywords"):
         st.write("Scraping the Wikipedia page...")
         scraper = Scraper()
-        document = scraper.scrape(topic)
+        document = scraper.scrape(topic,get_driver())
         st.success("Scraping completed.")
 
         
