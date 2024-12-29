@@ -15,6 +15,9 @@ try:
     spacy.load(model_name)
 except (ImportError, OSError):
     subprocess.run(["python", "-m", "spacy", "download", model_name])
+    # os.system('python -m spacy download en_core_web_sm')
+    import spacy
+    spacy.load(model_name)
 
 
 
