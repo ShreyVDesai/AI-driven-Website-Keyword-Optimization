@@ -1,6 +1,18 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
+import nltk
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
 
 def extract_keywords_tfidf(texts, num_keywords=10):
     vectorizer = TfidfVectorizer(max_features=num_keywords, stop_words='english')

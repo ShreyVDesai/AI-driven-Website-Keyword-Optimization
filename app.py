@@ -1,6 +1,5 @@
 import streamlit as st
 from similarity.Similarity import Similarity
-from lda.LDAextractor import LDA_extractor
 from KeyBert.keybert_extractor import KeyBertExtractor
 from Scraper.Scraper import Scraper
 import rake
@@ -93,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
